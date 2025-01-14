@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Website with Tabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .login-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 200px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #007BFF;
+            padding: 10px 0;
+        }
+
+        .tabs button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .tabs button:hover {
+            background-color: #0056b3;
+        }
+
+        .tab-content {
+            padding: 20px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+    <script>
+        function validatePassword() {
+            const inputPassword = document.getElementById('password').value;
+            const correctPassword = 'yourpassword'; // Change this to your desired password
+
+            if (inputPassword === correctPassword) {
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+            } else {
+                document.getElementById('error').innerText = 'Incorrect password. Please try again.';
+            }
+        }
+
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div id="login" class="login-container">
+        <h1>Enter Password</h1>
+        <input type="password" id="password" placeholder="Password">
+        <br>
+        <button onclick="validatePassword()">Submit</button>
+        <div id="error" class="error-message"></div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <div class="tabs">
+            <button onclick="openTab('tab1')">Tab 1</button>
+            <button onclick="openTab('tab2')">Tab 2</button>
+            <button onclick="openTab('tab3')">Tab 3</button>
+            <button onclick="openTab('tab4')">Tab 4</button>
+        </div>
+        <div id="tab1" class="tab-content active">
+            <h2>Welcome to Tab 1</h2>
+            <p>This is the content of Tab 1.</p>
+        </div>
+        <div id="tab2" class="tab-content">
+            <h2>Welcome to Tab 2</h2>
+            <p>This is the content of Tab 2.</p>
+        </div>
+        <div id="tab3" class="tab-content">
+            <h2>Welcome to Tab 3</h2>
+            <p>This is the content of Tab 3.</p>
+        </div>
+        <div id="tab4" class="tab-content">
+            <h2>Welcome to Tab 4</h2>
+            <p>This is the content of Tab 4.</p>
+        </div>
+    </div>
+</body>
+</html>
